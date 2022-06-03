@@ -33,7 +33,16 @@
     <img src="{{ recipe.image }}" class="pull-right">
     {% endif %}
     <h1>{{ recipe.name }}</h1>
-    <p>{{ recipe.description | markdownify }}</p>
+    <p>
+      Created on {{ recipe.created }} |
+      Updated on {{ recipe.updated }}
+    </p>
+    <form method="post" action="{% url 'recipe_rating' recipe.id %}">
+      {% csrf_token %}
+      {{ rating_form.as_p }}
+      <button class="button">Rate</button>
+    </form>
+    <p>Tags: {{ recipe.description | markdownify }}</p>
     <h2>Ingredients</h2>
     <table>
       <thead>

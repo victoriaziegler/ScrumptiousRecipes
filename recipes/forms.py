@@ -15,3 +15,12 @@ try:
 
 except Exception:
     pass
+
+
+from recipes.models import Rating
+
+
+class RatingForm(forms.ModelForm):
+    class Meta:
+        model = Rating
+        fields = ["value"]

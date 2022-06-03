@@ -1,5 +1,5 @@
 from django.contrib import admin
-from recipes.models import Recipe, Step, Measure, FoodItem, Ingredient
+from recipes.models import Recipe, Step, Measure, FoodItem, Ingredient, Rating
 
 # Register your models here.
 
@@ -24,8 +24,13 @@ class IngredientAdmin(admin.ModelAdmin):
     pass
 
 
+class RatingAdmin(admin.ModelAdmin):
+    pass
+
+
 admin.site.register(Recipe, RecipeAdmin)
 admin.site.register(Step, StepAdmin)
 admin.site.register(Measure, MeasureAdmin)
 admin.site.register(FoodItem, FoodItemAdmin)
 admin.site.register(Ingredient, IngredientAdmin)
+admin.site.register(Rating, RatingAdmin)

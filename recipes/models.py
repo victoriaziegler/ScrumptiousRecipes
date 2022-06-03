@@ -42,7 +42,7 @@ class FoodItem(models.Model):
 
 
 class Ingredient(models.Model):
-    amount = models.IntegerField(
+    amount = models.PositiveIntegerField(
         default=1, validators=[MaxValueValidator(20), MinValueValidator(1)]
     )
 
@@ -61,3 +61,12 @@ class Ingredient(models.Model):
             + " of "
             + self.food.name
         )
+
+
+class Rating(models.Model):
+    value = models.PositiveSmallIntegerField(
+        default=5, validators=[MaxValueValidator(5), MinValueValidator(1)]
+    )
+    recipe = models.ForeignKey(
+        "Recipe", related_name="ratings", on_delete=models.CASCADE
+    )
