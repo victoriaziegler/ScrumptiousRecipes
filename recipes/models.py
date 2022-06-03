@@ -22,7 +22,7 @@ class Step(models.Model):
     recipe = models.ForeignKey(
         "Recipe", related_name="steps", on_delete=models.CASCADE
     )
-    food_items = models.ManyToManyField("FoodItem", null=True, blank=True)
+    food_items = models.ManyToManyField("FoodItem", blank=True)
 
 
 class Measure(models.Model):
