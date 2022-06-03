@@ -131,18 +131,18 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 MARKDOWNIFY = {
     "default": {
         "WHITELIST_TAGS": [
-            'a',
-            'abbr',
-            'acronym',
-            'b',
-            'blockquote',
-            'em',
-            'i',
-            'li',
-            'ol',
-            'p',
-            'strong',
-            'ul'
+            "a",
+            "abbr",
+            "acronym",
+            "b",
+            "blockquote",
+            "em",
+            "i",
+            "li",
+            "ol",
+            "p",
+            "strong",
+            "ul",
         ]
     }
 }
