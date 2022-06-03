@@ -1,5 +1,5 @@
 {% load static %}
-
+{% load markdownify %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,12 +32,11 @@
     <img src="{{ recipe.image }}" class="pull-right">
     {% endif %}
     <h1>{{ recipe.name }}</h1>
-    <p>
+    <!-- <p>
       Created on {{ recipe.created }} |
       Updated on {{ recipe.updated }}
-    </p>
-    <p>Tags: {% for tag in recipe.tags.all %}{{ tag.word }} {% endfor %}</p>
-    <p>{{ recipe.description }}</p>
+    </p> -->
+    <p>{{ recipe.description | markdownify }}</p>
     <h2>Ingredients</h2>
     <table>
       <thead>
