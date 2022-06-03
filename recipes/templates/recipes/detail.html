@@ -16,20 +16,20 @@
     <nav>
       <ul>
         <li>
-          <a href="{% url 'home' %}">Scrumptious</a>
+          <a href="{% url 'home' %}">Scrumptioussss!</a>
         </li>
         <li>
-          <a href="{% url 'admin:index' %}">Admin</a>
+          <a href="{% url 'admin:index' %}">Admins Only</a>
         </li>
         <li>
-          <a href="{% url 'recipe_new' %}">Write a recipe</a>
+          <a href="{% url 'recipe_new' %}">Give me your recipe?</a>
         </li>
       </ul>
     </nav>
   </header>
   <main class="recipe-detail">
     {% if recipe.image %}
-      <img src="{{ recipe.image }}" class="pull-right">
+    <img src="{{ recipe.image }}" class="pull-right">
     {% endif %}
     <h1>{{ recipe.name }}</h1>
     <p>
@@ -48,18 +48,18 @@
       </thead>
       <tbody>
         {% for ingredient in recipe.ingredients.all %}
-          <tr>
-            <td>{{ ingredient.amount }}</td>
-            <td>{{ ingredient.measure.name }}</td>
-            <td>{{ ingredient.food.name }}</td>
-          </tr>
+        <tr>
+          <td>{{ ingredient.amount }}</td>
+          <td>{{ ingredient.measure.name }}</td>
+          <td>{{ ingredient.food.name }}</td>
+        </tr>
         {% endfor %}
       </tbody>
     </table>
     <h2>Steps</h2>
     <ol>
       {% for step in recipe.steps.all %}
-        <li>{{ step.directions }}</li>
+      <li>{{ step.directions }}</li>
       {% endfor %}
     </ol>
   </main>

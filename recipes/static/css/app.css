@@ -1,8 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
 
-html, button, select, textarea, input {
-  font-family: 'Roboto';
-  font-size: 16px;
+html,
+button,
+select,
+textarea,
+input {
+  font-family: 'Dancing Script', cursive;
+  font-size: 20px;
 }
 
 header nav ul {
@@ -14,12 +18,14 @@ header nav ul {
 
 a,
 a:visited {
-  text-decoration: none;
-  color: #208ACC;
+  text-decoration: rgb(245, 209, 215) underline;
+  background-color: rgb(245, 209, 215);
+  color: #000000;
+  font-family: 'Dancing Script', cursive;
 }
 
 button.button {
-  background-color: #E012AD;
+  background-color: rgb(245, 209, 215);
   border: 2px solid transparent;
   border-radius: 4px;
   color: white;
@@ -29,17 +35,20 @@ button.button {
 
 button.button:hover {
   background-color: white;
-  border-color: #E012AD;
-  color: #E012AD;
+  border-color: rgb(245, 209, 215);
+  color: rgb(245, 209, 215);
+  ;
 }
 
 button.button:active {
   background-color: lightblue;
 }
 
-input, textarea {
-  border: 1px solid #E012AD;
+input,
+textarea {
+  border: 5px solid rgb(245, 209, 215);
   border-radius: 4px;
+  border-style: groove;
   padding: 1em 1.5em;
 }
 
@@ -47,7 +56,8 @@ table {
   margin: auto;
 }
 
-td, th {
+td,
+th {
   padding: .25em .5em;
 }
 
@@ -68,6 +78,7 @@ textarea {
 
 .recipe-card-date {
   color: darkgray;
+  font-size: 15px;
 }
 
 .recipe-form {
