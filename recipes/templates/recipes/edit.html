@@ -26,11 +26,15 @@
       </ul>
     </nav>
   </header>
-  <form method="POST">
-    {% csrf_toekn %}
-    {{ form.as_p }}
-    <input type="submit" value="Edit Recipe">
-  </form>
+  <main class="recipe-form">
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <div class="control">
+        <button class="button">Update</button>
+      </div>
+    </form>
+  </main>
 </body>
 
 </html>
