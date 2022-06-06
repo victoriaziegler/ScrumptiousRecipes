@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 
 <head>
@@ -6,10 +7,30 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Edit {{ recipe.name }} - Scrumptious</title>
+  <link rel="stylesheet" href="{% static 'css/app.css' %}">
 </head>
 
 <body>
-
+  <header>
+    <nav>
+      <ul>
+        <li>
+          <a href="{% url 'home' %}">Scrumptioussss!</a>
+        </li>
+        <li>
+          <a href="{% url 'admin:index' %}">Admins Only</a>
+        </li>
+        <li>
+          <a href="{% url 'recipe_new' %}">Give me your recipe?</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <form method="POST">
+    {% csrf_toekn %}
+    {{ form.as_p }}
+    <input type="submit" value="Edit Recipe">
+  </form>
 </body>
 
 </html>
