@@ -20,7 +20,7 @@
 
 {% block content %}
 <main class="recipe-grid">
-  {% for recipe in recipe_list %}
+  {% for recipe in recipes %}
   <div class="recipe-card">
     <h2 class="recipe-card-title">
       <a href="{% url 'recipe_detail' recipe.pk %}">{{ recipe.name }}</a>
