@@ -30,8 +30,8 @@ DEBUG = False
 ALLOWED_HOSTS = ["localhost"]
 
 
-LOGIN_REDIRECT_URL = "recipes_list"
-LOGOUT_REDIRECT_URL = "recipes_list"
+# LOGIN_REDIRECT_URL = "recipes_list"
+# LOGOUT_REDIRECT_URL = "recipes_list"
 
 
 # Application definition
