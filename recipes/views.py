@@ -4,19 +4,16 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from recipes.forms import RatingForm
 
-try:
-    from recipes.forms import RecipeForm
-    from recipes.models import Recipe
-except Exception:
-    RecipeForm = None
-    Recipe = None
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+from recipes.models import Recipe
 
 
 class RecipeListView(ListView):
     model = Recipe
     context_object_name = "recipe_list"
     template_name = "recipes/list.html"
-    paginate_by = 4
+    paginate_by = 12
 
     def get_queryset(self):
         query = self.request.GET.get("q")
@@ -36,21 +33,21 @@ class RecipeDetailView(DetailView):
         return context
 
 
-class RecipeCreateView(CreateView):
+class RecipeCreateView(LoginRequiredMixin, CreateView):
     model = Recipe
     fields = ["name", "author", "description", "image"]
     template_name = "recipes/new.html"
     success_url = "/"
 
 
-class RecipeUpdateView(UpdateView):
+class RecipeUpdateView(LoginRequiredMixin, UpdateView):
     model = Recipe
     fields = ["name", "author", "description", "image"]
     template_name = "recipes/edit.html"
     success_url = "/"
 
 
-class RecipeDeleteView(DeleteView):
+class RecipeDeleteView(LoginRequiredMixin, DeleteView):
     model = Recipe
     template_name = "recipes/delete.html"
     success_url = "/"

@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,16 +7,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit {{ tag.name }} - Tags - Scrumptious</title>
+    <title>Blog Away</title>
     <link rel="stylesheet" href="{% static 'css/app.css' %}">
-    <style>
-        body {
-            background: url("https://png.pngtree.com/thumb_back/fw800/back_pic/03/57/42/2957a092f3cb929.jpg");
-            background-repeat: no-repeat;
-            background-size: cover;
-            height: 100%;
-        }
-    </style>
 </head>
 
 <body>
@@ -37,6 +30,12 @@
             </ul>
         </nav>
     </header>
+    <main>
+        <h1>It looks like you took a wrong turn...</h1>
+        <p>Were you trying to visit {{request_path}} ? </p>
+        <p>It looks like you got the following exception: {{exception}}</p>
+    </main>
+    <footer></footer>
 </body>
 
 </html>

@@ -1,11 +1,10 @@
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-try:
-    from tags.models import Tag
-except Exception:
-    Tag = None
+
+from tags.models import Tag
 
 
 # Create your views here.
@@ -15,7 +14,7 @@ class TagListView(ListView):
     model = Tag
     context_object_name = "tags_list"
     template_name = "tags/list.html"
-    paginate_by = 15
+    paginate_by = 5
 
 
 class TagDetailView(DetailView):
@@ -24,19 +23,21 @@ class TagDetailView(DetailView):
     template_name = "tags/detail.html"
 
 
-class TagCreateView(CreateView):
+class TagCreateView(LoginRequiredMixin, CreateView):
     model = Tag
-    template_name = "tags/create.html"
+    template_name = "tags/new.html"
+    fields = ["name"]
     success_url = "/"
 
 
-class TagUpdateView(UpdateView):
+class TagUpdateView(LoginRequiredMixin, UpdateView):
     model = Tag
-    template_name = "tags/update.html"
+    template_name = "tags/edit.html"
+    fields = ["name"]
     success_url = "/"
 
 
-class TagDeleteView(DeleteView):
+class TagDeleteView(LoginRequiredMixin, DeleteView):
     model = Tag
     template_name = "tags/delete.html"
     success_url = "/"
