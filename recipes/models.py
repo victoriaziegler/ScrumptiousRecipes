@@ -1,13 +1,18 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 
+from django.conf import settings
+
+USER_MODEL = settings.AUTH_USER_MODEL
 
 # Create your models here.
 
 
 class Recipe(models.Model):
     name = models.CharField(max_length=125)
-    author = models.CharField(max_length=100)
+    author = models.ForeignKey(
+        USER_MODEL, related_name="recipes", on_delete=models.CASCADE
+    )
     description = models.TextField(null=True)
     image = models.URLField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
@@ -24,6 +29,9 @@ class Step(models.Model):
         "Recipe", related_name="steps", on_delete=models.CASCADE
     )
     food_items = models.ManyToManyField("FoodItem", blank=True)
+
+    def __str__(self):
+        return str(self.order) + ". " + self.directions
 
 
 class Measure(models.Model):

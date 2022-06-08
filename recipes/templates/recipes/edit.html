@@ -1,51 +1,14 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 {% load static %}
-<html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Edit {{ recipe.name }} - Scrumptious</title>
-  <link rel="stylesheet" href="{% static 'css/app.css' %}">
-  <style>
-    body {
-      background: url("https://png.pngtree.com/thumb_back/fw800/back_pic/03/57/42/2957a092f3cb929.jpg");
-      background-repeat: no-repeat;
-      background-size: cover;
-      height: 100%;
-    }
-  </style>
-</head>
-
-<body>
-  <header>
-    <nav>
-      <ul>
-        <li>
-          <a href="{% url 'home' %}">Scrumptioussss!</a>
-        </li>
-        <li>
-          <a href="{% url 'tags_list' %}">Tags</a>
-        </li>
-        <li>
-          <a href="{% url 'recipe_new' %}">Give me your recipe?</a>
-        </li>
-        <li>
-          <a href="{% url 'admin:index' %}">Admins Only</a>
-        </li>
-      </ul>
-    </nav>
-  </header>
-  <main class="recipe-form">
-    <form method="post">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <div class="control">
-        <button class="button">Update</button>
-      </div>
-    </form>
-  </main>
-</body>
-
-</html>
+{% block content %}
+<main class="recipe-form">
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="control">
+      <button class="button">Update</button>
+    </div>
+  </form>
+</main>
+{% endblock content %}

@@ -1,68 +1,33 @@
+{% extends 'base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
+{% block pagination %}
+<div class="pagination">
+  <span class="step-links">
+    {% if page_obj.has_previous %}
+    <a href="?page=1">&laquo; first</a>
+    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+    {% endif %}
+    <span class="current">
+      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+    </span>
+    {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}">next</a>
+    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+    {% endif %}
+  </span>
+</div>
+{% endblock pagination %}
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scrumptious</title>
-  <link rel="stylesheet" href="{% static 'css/app.css' %}">
-  <style>
-    body {
-      background: url("https://png.pngtree.com/thumb_back/fw800/back_pic/03/57/42/2957a092f3cb929.jpg");
-      background-repeat: no-repeat;
-      background-size: cover;
-      height: 100%;
-    }
-  </style>
-</head>
-
-<body>
-  <header>
-    <nav>
-      <ul>
-        <li>
-          <a href="{% url 'home' %}">Scrumptioussss!</a>
-        </li>
-        <li>
-          <a href="{% url 'tags_list' %}">Tags</a>
-        </li>
-        <li>
-          <a href="{% url 'recipe_new' %}">Give me your recipe?</a>
-        </li>
-        <li>
-          <a href="{% url 'admin:index' %}">Admins Only</a>
-        </li>
-      </ul>
-    </nav>
-    <div class="pagination">
-      <span class="step-links">
-        {% if page_obj.has_previous %}
-        <a href="?page=1">&laquo; first</a>
-        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-        {% endif %}
-        <span class="current">
-          Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-        </span>
-        {% if page_obj.has_next %}
-        <a href="?page={{ page_obj.next_page_number }}">next</a>
-        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
-      </span>
-    </div>
-  </header>
-  <main class="recipe-grid">
-    {% for recipe in recipe_list %}
-    <div class="recipe-card">
-      <h2 class="recipe-card-title">
-        <a href="{% url 'recipe_detail' recipe.pk %}">{{ recipe.name }}</a>
-      </h2>
-      <p class="recipe-card-date">{{ recipe.updated }}</p>
-    </div>
+{% block content %}
+<main class="recipe-grid">
+  {% for recipe in recipe_list %}
+  <div class="recipe-card">
+    <h2 class="recipe-card-title">
+      <a href="{% url 'recipe_detail' recipe.pk %}">{{ recipe.name }}</a>
+    </h2>
+    <p class="recipe-card-date">{{ recipe.updated }}</p>
     {% endfor %}
-  </main>
-</body>
-
-</html>
+  </div>
+</main>
+{% endblock content %}

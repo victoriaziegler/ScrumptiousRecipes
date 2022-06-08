@@ -1,89 +1,51 @@
+{% extends 'base.html' %}
 {% load static %}
 {% load markdownify %}
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>New Recipe - Scrumptious</title>
-  <link rel="stylesheet" href="{% static 'css/app.css' %}">
-  <style>
-    body {
-      background: url("https://png.pngtree.com/thumb_back/fw800/back_pic/03/57/42/2957a092f3cb929.jpg");
-      background-repeat: no-repeat;
-      background-size: cover;
-      height: 100%;
-    }
-  </style>
-</head>
-
-<body>
-  <header>
-    <nav>
-      <ul>
-        <li>
-          <a href="{% url 'home' %}">Scrumptioussss!</a>
-        </li>
-        <li>
-          <a href="{% url 'tags_list' %}">Tags</a>
-        </li>
-        <li>
-          <a href="{% url 'recipe_new' %}">Give me your recipe?</a>
-        </li>
-        <li>
-          <a href="{% url 'admin:index' %}">Admins Only</a>
-        </li>
-      </ul>
-    </nav>
-  </header>
-  <main class="recipe-detail">
-    {% if recipe.image %}
-    <img src="{{ recipe.image }}" class="pull-right">
-    {% endif %}
-    <h1>{{ recipe.name }}</h1>
-    <p>
-      Created on {{ recipe.created }} |
-      Updated on {{ recipe.updated }}
-    </p>
-    <form method="post" action="{% url 'recipe_rating' recipe.id %}">
-      {% csrf_token %}
-      {{ rating_form.as_p }}
-      <button class="button">Rate</button>
-    </form>
-    <p>Tags:
-      {{ recipe.description | markdownify }}</p>
-    <h2>Ingredients</h2>
-    <table>
-      <thead>
-        <tr>
-          <th colspan="2">Amount</th>
-          <th>Food item</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for ingredient in recipe.ingredients.all %}
-        <tr>
-          <td>{{ ingredient.amount }}</td>
-          <td>{{ ingredient.measure.name }}</td>
-          <td>{{ ingredient.food.name }}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-    <h2>Steps</h2>
-    <ol>
-      {% for step in recipe.steps.all %}
-      <li>{{ step.directions }}</li>
+{% block content %}
+<main class="recipe-detail">
+  {% if recipe.image %}
+  <img src="{{ recipe.image }}" class="pull-right">
+  {% endif %}
+  <h1>{{ recipe.name }}</h1>
+  <p>
+    Created on {{ recipe.created }} |
+    Updated on {{ recipe.updated }}
+  </p>
+  <form method="post" action="{% url 'recipe_rating' recipe.id %}">
+    {% csrf_token %}
+    {{ rating_form.as_p }}
+    <button class="button">Rate</button>
+  </form>
+  <p>Tags:
+    {{ recipe.description | markdownify }}</p>
+  <h2>Ingredients</h2>
+  <table>
+    <thead>
+      <tr>
+        <th colspan="2">Amount</th>
+        <th>Food item</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for ingredient in recipe.ingredients.all %}
+      <tr>
+        <td>{{ ingredient.amount }}</td>
+        <td>{{ ingredient.measure.name }}</td>
+        <td>{{ ingredient.food.name }}</td>
+      </tr>
       {% endfor %}
-    </ol>
-    <div>
-      <a href="{% url 'recipe_delete' recipe.id %}">Delete Recipe</a>
-      <a href="{% url 'recipe_edit' recipe.id %}">Edit Recipe</a>
-    </div>
-  </main>
-</body>
-
-</html>
+    </tbody>
+  </table>
+  <h2>Steps</h2>
+  <ol>
+    {% for step in recipe.steps.all %}
+    <li>{{ step.directions }}</li>
+    {% endfor %}
+  </ol>
+  <div>
+    <a href="{% url 'recipe_delete' recipe.id %}">Delete Recipe</a>
+    <a href="{% url 'recipe_edit' recipe.id %}">Edit Recipe</a>
+  </div>
+</main>
+{% endblock content %}
