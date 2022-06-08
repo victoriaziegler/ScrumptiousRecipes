@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% load static %}
 {% load markdownify %}
 
 {% block content %}
@@ -18,7 +17,7 @@
     <button class="button">Rate</button>
   </form>
   <p>Tags:
-    {{ recipe.description | markdownify }}</p>
+    {{ recipe.description|markdownify }}</p>
   <h2>Ingredients</h2>
   <table>
     <thead>

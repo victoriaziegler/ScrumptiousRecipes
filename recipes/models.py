@@ -11,7 +11,7 @@ USER_MODEL = settings.AUTH_USER_MODEL
 class Recipe(models.Model):
     name = models.CharField(max_length=125)
     author = models.ForeignKey(
-        USER_MODEL, related_name="recipes", on_delete=models.CASCADE
+        USER_MODEL, related_name="recipes", on_delete=models.CASCADE, null=True
     )
     description = models.TextField(null=True)
     image = models.URLField(null=True, blank=True)
