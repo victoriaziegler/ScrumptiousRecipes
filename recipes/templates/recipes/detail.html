@@ -4,7 +4,7 @@
 {% block content %}
 <main class="recipe-detail">
   {% if recipe.image %}
-  <img src="{{ recipe.image }}" class="pull-right">
+  <img src="{{ recipe.image }}" class="pull-right" width="400" height="auto">
   {% endif %}
   <h1>{{ recipe.name }}</h1>
   <p>
@@ -16,9 +16,9 @@
     {{ rating_form.as_p }}
     <button class="button">Rate</button>
   </form>
-  <p>Tags:
+  <p>Description:
     {{ recipe.description|markdownify }}</p>
-  <h2>Ingredients</h2>
+  <h2 style="text-align: center">Ingredients</h2>
   <table>
     <thead>
       <tr>
@@ -36,7 +36,7 @@
       {% endfor %}
     </tbody>
   </table>
-  <h2>Steps</h2>
+  <h2 style="text-align: center">Steps</h2>
   <ol>
     {% for step in recipe.steps.all %}
     <li>{{ step.directions }}</li>

@@ -116,7 +116,7 @@ textarea {
   display: grid;
   grid-template-columns: 8em 1fr;
   column-gap: 20px;
-  color: black;
+  color: white;
 }
 
 .recipe-form label {
